@@ -2,6 +2,6 @@
 Building a Simple Web Service with Python, Django, and Web Scraping
 
 ## Contents
-- [Slides](slides/)
+- [파이썬_1주차_241220](241220/)
 - [Assignments](assignments/)
 - [Resources](resources/)
