@@ -1,4 +1,4 @@
-# WebService-with-Python-Django
+# Python Basic
 Building a Simple Web Service with Python, Django, and Web Scraping
 
 ## Contents
