@@ -1,8 +1,25 @@
 ## 3주차_클래스의 사용과 상속
 
-### ◆ 파이썬 식별자(변수명, 함수명) 선언규칙
-- 특수문자는 언더 바(_)만 사용
-- 숫자로 시작 x
-- 공백 x
-- 기본 키워드를 피해서
-- 되도록 유의미하고 의도를 알 수 있도록 명명
+### ◆ 파이썬 클래스 선언 예시
+
+- 파이썬의 클래스 식별자는 카멜케이스(CarmelCase)를 사용
+
+ex) 
+
+```python
+class Person:
+    # 생성자 메서드 (__init__)
+    def __init__(self, name):
+        self.name = name  # 인스턴스 변수 초기화
+
+    # 메서드 정의
+    def hello(self):
+        return f"안녕하세요, 저는 {self.name}입니다."
+
+# 클래스 사용 예시
+person1 = Person("박민규")  # Person 클래스의 인스턴스 생성
+print(person1.hello())         # "안녕하세요, 저는 박민규입니다."
+
+person2 = Person("김영하")
+print(person2.hello())         # "안녕하세요, 저는 김영하입니다."
+```
