@@ -8,15 +8,12 @@ ex1)
 
 ```python
 class Person:
-    # 생성자 메서드 (__init__)
     def __init__(self, name):
         self.name = name  # 인스턴스 변수 초기화
 
-    # 메서드 정의
     def hello(self):
         return f"안녕하세요, 저는 {self.name}입니다."
 
-# 클래스 사용 예시
 person1 = Person("김지훈")  # Person 클래스의 인스턴스 생성
 print(person1.hello())         # "안녕하세요, 저는 김지훈입니다."
 
@@ -28,12 +25,10 @@ ex2)
 
 ```python
 class Person:
-    # 생성자 메서드 (__init__)
     def __init__(self, name, age=0):
         self.name = name  # 인스턴스 변수 초기화
         self.age = age
 
-    # 메서드 정의
     def hello(self):
         return f"안녕하세요, 저는 {self.name}입니다."
 
@@ -42,21 +37,18 @@ class Person:
             return "신생아입니다."
         return f"{self.age}살 입니다."
 
-# 클래스 사용 예시
-person2 = Person("홍길동", 36)
-print(person2.hello())         # "안녕하세요, 저는 홍길동입니다."
+person1 = Person("홍길동", 36)
+print(person1.hello())         # "안녕하세요, 저는 홍길동입니다."
 
-print(person2.get_age())       # 36살 입니다.
+print(person1.get_age())       # 36살 입니다.
 ```
-
-### ◆ 클래스의 상속과 오버라이딩
 
 ex3)
 
 ```python
 class Person:
     def __init__(self, name, age=0):
-        self.name = name
+        self.name = name  # 인스턴스 변수 초기화
         self.age = age
 
     def hello(self):
@@ -67,12 +59,56 @@ class Person:
             return "신생아입니다."
         return f"{self.age}살 입니다."
 
+    def gura_chk(self, target):
+        target.age += 1
+        return f"그의 말은 구라입니다. {target.name}의 나이는 {target.age}살 입니다."
+
+# 클래스 사용 예시
+person1 = Person("홍길동", 36)
+print(person1.hello())
+print(person1.get_age())
+
+person2 = Person("아무개", 27)
+print(person2.hello())
+print(person1.gura_chk(person1))
+
+print(person1.get_age())
+
+-----------------------------------------------------
+안녕하세요, 저는 홍길동입니다.
+36살 입니다.
+안녕하세요, 저는 아무개입니다.
+그의 말은 구라입니다. 홍길동의 나이는 37살 입니다.
+
+37살 입니다.
+-----------------------------------------------------
+```
+
+### ◆ 클래스의 상속과 오버라이딩
+
+
+```python
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+    def hello(self):
+        return f"안녕하세요, 저는 {self.name}입니다."
+
 class Player(Person):
     def hello(self):
-        return f"안녕하세요, 저는 {self.name}라고 하는 사람입니다."
+        return f"안녕하세요, 저는 {self.name}(이)라고 하는 플레이어입니다."
+
+class Monster(Person):
+    def hello(self):
+        return f"반갑다, 나는 {self.name}(이)라고 하는 몬스터이다."
 
 
+person1 = Player("홍길동")
+person2 = Monster("고블린")
 
-person2 = Player("홍길동", 36)
-print(person2.hello())         # "안녕하세요, 저는 홍길동라고 하는 [사람]입니다."
+print(person1.hello())         # "안녕하세요, 저는 홍길동라고 하는 [플레이어]입니다."
+print(person2.hello())         # 반갑다, 나는 고블린(이)라고 하는 몬스터이다.
 ```
+
+### ◆ 종합 예제 : 
