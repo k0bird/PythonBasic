@@ -118,9 +118,9 @@ print(person2.hello())         # 반갑다, 나는 고블린(이)라고 하는 �
 ```python
 import time
 
-print("0.5초간 뜸을 들여 보겠습니다.)
+print("0.5초간 뜸을 들여 보겠습니다.")
 time.sleep(0.5)  ## 단위는 s
-print("이제 말해보겠습니다.)
+print("이제 말해보겠습니다.")
 ```
 
 
