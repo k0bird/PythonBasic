@@ -111,7 +111,19 @@ print(person1.hello())         # "안녕하세요, 저는 홍길동라고 하는
 print(person2.hello())         # 반갑다, 나는 고블린(이)라고 하는 몬스터이다.
 ```
 
+### ◆ sleep 함수 사용 (time 라이브러리)
+
+- 원하는 시간만큼 실행을 지연 시킬 수 있음.
+
+```python
+import time
+
+time.sleep(200)  ## 단위는 ms
+```
+
+
 ### ◆ 종합 예제 : 간단한 텍스트 기반 RPG 게임 만들기
+
 
 ```python
 
