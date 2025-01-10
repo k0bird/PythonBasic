@@ -114,44 +114,5 @@ print(person2.hello())         # 반갑다, 나는 고블린(이)라고 하는 �
 ### ◆ 종합 예제 : 간단한 텍스트 기반 RPG 게임 만들기
 
 ```python
-import random
 
-class Person:
-    def __init__(self, name, hp, ad):
-        self.name = name
-        self.hp = hp
-        self.ad = ad
-
-    def attack(self, target):
-        damage = random.randint(1, self.ad)
-        target.hp -= damage
-        print(f"{self.name}(이)가 {target.name}에게 {damage}의 피해를 입혔습니다.")
-
-
-player = Person("홍길동", 100, 20)
-monster = Person("고블린", 50, 10)
-
-print(f"{monster.name}을 마주쳤습니다.")
-
-while True:
-    action = input(f"\n행동을 선택하세요 (1: 공격, 2: 도망): ")
-    if action == "1":
-        player.attack(monster)
-        if monster.hp > 0:
-            print(f"{monster.name}의 남은 체력은 {monster.hp}입니다.")
-        else:
-            print(f"{monster.name}을 물리쳤습니다.")
-            break
-        monster.attack(player)
-        if player.hp > 0:
-            print(f"{player.name}의 남은 체력은 {player.hp}입니다.")
-        else:
-            print(f"{monster.name}에게 패배하였습니다.\n게임을 종료합니다.")
-            break
-    elif action == "2":
-        print(f"{monster.name}로 부터 도망쳤습니다. 게임을 종료합니다.")
-        break
-    else:
-        print("올바른 행동을 입력하세요.")
-        continue
 ```
