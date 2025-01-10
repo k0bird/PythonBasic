@@ -118,7 +118,7 @@ print(person2.hello())         # 반갑다, 나는 고블린(이)라고 하는 �
 ```python
 import time
 
-time.sleep(200)  ## 단위는 ms
+time.sleep(0.1)  ## 단위는 s
 ```
 
 
