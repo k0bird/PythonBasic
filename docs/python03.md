@@ -128,5 +128,50 @@ print("이제 말해보겠습니다.")
 
 
 ```python
+import random
+import time
 
+class Person:
+    def __init__(self, name, hp, ad):
+        self.name = name
+        self.hp = hp
+        self.ad = ad
+
+    def attack(self, target):
+        damage = random.randint(1, self.ad)
+        target.hp -= damage
+        print(f"{self.name}(이)가 {target.name}에게 {damage}의 피해를 입혔습니다.")
+        time.sleep(0.5)
+
+    def get_hp(self):
+        print(f"{self.name}의 남은 체력은 {self.hp}입니다.")
+        time.sleep(0.5)
+
+
+player = Person("홍길동", 100, 20)
+monster = Person("고블린", 50, 10)
+
+print(f"{monster.name}을 마주쳤습니다.")
+
+while True:
+    action = input(f"\n행동을 선택하세요 (1: 공격, 2: 도망): ")
+    if action == "1":
+        player.attack(monster)
+        if monster.hp > 0:
+            monster.get_hp()
+        else:
+            print(f"{monster.name}을 물리쳤습니다. 게임을 종료합니다.")
+            break
+        monster.attack(player)
+        if player.hp > 0:
+            player.get_hp()
+        else:
+            print(f"{monster.name}에게 패배하였습니다. 게임을 종료합니다.")
+            break
+    elif action == "2":
+        print(f"{monster.name}로 부터 도망쳤습니다. 게임을 종료합니다.")
+        break
+    else:
+        print("올바른 행동을 입력하세요.")
+        continue
 ```
