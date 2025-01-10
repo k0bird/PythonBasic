@@ -26,7 +26,7 @@ ex2)
 ```python
 class Person:
     def __init__(self, name, age=0):
-        self.name = name  # 인스턴스 변수 초기화
+        self.name = name
         self.age = age
 
     def hello(self):
@@ -48,7 +48,7 @@ ex3)
 ```python
 class Person:
     def __init__(self, name, age=0):
-        self.name = name  # 인스턴스 변수 초기화
+        self.name = name
         self.age = age
 
     def hello(self):
