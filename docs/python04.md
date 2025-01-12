@@ -7,7 +7,7 @@
 
 The web framework for perfectionists with deadlines = 마감일에 쫓기는 완벽주의자를 위한 웹 프레임워크
 
-개발 속도가 빠르고, 보안이 훌륭하고, 기능이 많다.(그만큼 무거움)
+개발 속도가 빠르고, 보안이 훌륭하고, 기능이 많다.
 
 
 ### ◆ 장고 개발 환경 준비(가상 환경)
@@ -80,6 +80,35 @@ Quit the server with CONTROL-C.
 ![image](https://github.com/user-attachments/assets/276dabe0-5428-4c7a-af59-d1e6ed7a4000)
 
 
+### ◆ 장고의 디자인 패턴(MTV)
+
+- MTV(Model - Template - View)
+
+- Model
+
+```
+데이터베이스(DB)에 저장되는 데이터에 대한 관리, 연결, 실행의 역할
+SQL을 사용하지 않고 DB작업을 가능하게 하는 ORM(Object-Relational Mapping)을 제공한다.
+ORM : 입문자에게 더 쉽고 탄탄함
+(models.py)
+```
+
+- View
+
+```
+컨트롤러의 역할.
+웹 요청을 받으면 로직에 따라 필요한 데이터를 Model을 통해 추출, 가공하여 템플릿으로 보내준다.
+(veiws.py)
+```
+
+- Template
+
+```
+사용자에게 보이는 부분을 관리.
+View로부터 전달받은 데이터 등을 가시화 하여 사용자에게 보여준다.
+(.html)
+```
+
 ### ◆ 어플리케이션(App) 만들기
 
 ```
@@ -89,11 +118,156 @@ djnago-admin startapp myapp
 
 ### ◆ settings.py 설정하기
 
+- 새로 생성한 앱 추가
+
+```python
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'myapp',  # 새로 생성한 앱 추가
+]
 ```
+
+- 서버 언어와 시간 설정
+
+```python
 LANGUAGE_CODE = 'ko-kr'
 
 TIME_ZONE = 'Asia/Seoul'
 ```
 
+- templates 폴더 생성 및 연결
+
+```python
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+```
 
 
+### ◆ URL 연결
+
+- config > urls.py
+  
+```python
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('myapp.urls')),
+]
+```
+
+- myapp > urls.py (생성)
+
+```python
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path('', views.index),
+]
+```
+
+
+### ◆ 간단한 뷰(views) 출력 사용해보기
+
+- myapp > views.py
+
+```python
+from django.http import HttpResponse
+
+
+def index(request):
+    return HttpResponse("안녕하세요 myapp에 오신것을 환영합니다.")
+```
+
+
+### ◆ TO-DO 웹서비스 만들기
+
+- myapp > models.py 에 To-do 모델을 정의
+
+```python
+from django.db import models
+
+class Todo(models.Model):
+    title = models.CharField(max_length=200)
+    completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
+```
+
+- 데이터베이스에 반영(마이그레이션)
+
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+
+
+- 뷰 작성
+
+```python
+from django.shortcuts import render, redirect
+from .models import Todo
+
+def todo_list(request):
+    todos = Todo.objects.all()
+    return render(request, 'todo/todo_list.html', {'todos': todos})
+```
+
+- URL 설정
+
+```python
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.todo_list, name='todo_list'),
+]
+```
+
+- TO-DO 리스트 템플릿 작성
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <a href="/add/">Add To-Do</a>
+    <ul>
+        {% for todo in todos %}
+            <li>
+                <form action="/toggle/{{ todo.id }}/" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit">{{ todo.title }}</button>
+                </form>
+                {% if todo.completed %} (Done) {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+```
