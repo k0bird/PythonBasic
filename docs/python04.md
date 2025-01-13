@@ -79,7 +79,7 @@ Quit the server with CONTROL-C.
 
 ![image](https://github.com/user-attachments/assets/276dabe0-5428-4c7a-af59-d1e6ed7a4000)
 
-- 서버 언어와 시간 설정
+- 서버 언어와 시간 설정 (settings.py)
 
 ```python
 LANGUAGE_CODE = 'ko-kr'
@@ -93,7 +93,7 @@ TIME_ZONE = 'Asia/Seoul'
 djnago-admin startapp myapp
 ```
 
-- 새로 생성한 앱 추가
+- 새로 생성한 앱 추가 (settings.py)
 
 ```python
 INSTALLED_APPS = [
@@ -236,7 +236,7 @@ urlpatterns = [
 ]
 ```
 
-- templates 폴더 생성 및 연결
+- templates 폴더 생성 및 연결 (settings.py)
 
 ```python
 TEMPLATES = [
