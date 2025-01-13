@@ -260,5 +260,5 @@ TEMPLATES = [
 ```
 
 - [실습파일1 : TO-DO 리스트 템플릿](/html/todo_list.html)
-- 
+  
 - [실습파일2 : TO-DO 추가 템플릿](/html/add_todo.html)
