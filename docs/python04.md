@@ -263,7 +263,7 @@ TEMPLATES = [
 
 - TO-DO 리스트 템플릿 작성
 
-```html
+```
 <!DOCTYPE html>
 <html lang="en">
 <head>
