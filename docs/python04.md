@@ -200,9 +200,7 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-- HeidiSQL(db 브라우저) 설치
-- 
-https://www.heidisql.com/download.php
+- [HeidiSQL(db 브라우저) 설치](https://www.heidisql.com/download.php)
 
 - 뷰 작성
 
@@ -262,6 +260,8 @@ TEMPLATES = [
 ```
 
 - TO-DO 리스트 템플릿 작성
+
+
 
 ```
 <!DOCTYPE html>
