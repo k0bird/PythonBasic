@@ -80,6 +80,17 @@ Quit the server with CONTROL-C.
 ![image](https://github.com/user-attachments/assets/276dabe0-5428-4c7a-af59-d1e6ed7a4000)
 
 
+### ◆ settings.py 설정하기
+
+- 서버 언어와 시간 설정
+
+```python
+LANGUAGE_CODE = 'ko-kr'
+
+TIME_ZONE = 'Asia/Seoul'
+```
+
+
 ### ◆ 장고의 디자인 패턴(MTV)
 
 - MTV(Model - Template - View)
@@ -115,9 +126,6 @@ View로부터 전달받은 데이터 등을 가시화 하여 사용자에게 보
 djnago-admin startapp myapp
 ```
 
-
-### ◆ settings.py 설정하기
-
 - 새로 생성한 앱 추가
 
 ```python
@@ -131,35 +139,6 @@ INSTALLED_APPS = [
     'myapp',  # 새로 생성한 앱 추가
 ]
 ```
-
-- 서버 언어와 시간 설정
-
-```python
-LANGUAGE_CODE = 'ko-kr'
-
-TIME_ZONE = 'Asia/Seoul'
-```
-
-- templates 폴더 생성 및 연결
-
-```python
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-```
-
 
 ### ◆ URL 연결
 
@@ -188,6 +167,7 @@ urlpatterns = [
 ```
 
 
+
 ### ◆ 간단한 뷰(views) 출력 사용해보기
 
 - myapp > views.py
@@ -201,7 +181,9 @@ def index(request):
 ```
 
 
-### ◆ TO-DO 웹서비스 만들기
+
+
+### ◆ 실습 예제 : TO-DO 웹서비스 만들기
 
 - myapp > models.py 에 To-do 모델을 정의
 
@@ -233,6 +215,19 @@ from .models import Todo
 def todo_list(request):
     todos = Todo.objects.all()
     return render(request, 'todo/todo_list.html', {'todos': todos})
+
+def add_todo(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        Todo.objects.create(title=title)
+        return redirect('todo_list')
+    return render(request, 'todo/add_todo.html')
+
+def toggle_todo(request, todo_id):
+    todo = Todo.objects.get(id=todo_id)
+    todo.completed = not todo.completed
+    todo.save()
+    return redirect('todo_list')
 ```
 
 - URL 설정
@@ -243,10 +238,33 @@ from . import views
 
 urlpatterns = [
     path('', views.todo_list, name='todo_list'),
+    path('add/', views.add_todo, name='add_todo'),
+    path('toggle/<int:todo_id>/', views.toggle_todo, name='toggle_todo'),
+]
+```
+
+- templates 폴더 생성 및 연결
+
+```python
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
 ]
 ```
 
 - TO-DO 리스트 템플릿 작성
+  
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -271,3 +289,26 @@ urlpatterns = [
 </body>
 </html>
 ```
+
+- TO-DO 추가 템플릿 작성
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add To-Do</title>
+</head>
+<body>
+    <h1>Add To-Do</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="To-Do Title">
+        <button type="submit">Add</button>
+    </form>
+    <a href="/">Back</a>
+</body>
+</html>
+```
+
+
