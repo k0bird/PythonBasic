@@ -201,8 +201,8 @@ python manage.py migrate
 ```
 
 - HeidiSQL(db 브라우저) 설치
-
-[https://www.heidisql.com/download.php]
+- 
+https://www.heidisql.com/download.php
 
 - 뷰 작성
 
@@ -262,52 +262,5 @@ TEMPLATES = [
 ]
 ```
 
-- TO-DO 리스트 템플릿 작성
-  
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>To-Do List</title>
-</head>
-<body>
-    <h1>To-Do List</h1>
-    <a href="/add/">Add To-Do</a>
-    <ul>
-        {% for todo in todos %}
-            <li>
-                <form action="/toggle/{{ todo.id }}/" method="post" style="display: inline;">
-                    {% csrf_token %}
-                    <button type="submit">{{ todo.title }}</button>
-                </form>
-                {% if todo.completed %} (Done) {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
-```
-
-- TO-DO 추가 템플릿 작성
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add To-Do</title>
-</head>
-<body>
-    <h1>Add To-Do</h1>
-    <form method="post">
-        {% csrf_token %}
-        <input type="text" name="title" placeholder="To-Do Title">
-        <button type="submit">Add</button>
-    </form>
-    <a href="/">Back</a>
-</body>
-</html>
-```
 
 
