@@ -242,3 +242,73 @@ urlpatterns = [
 ]
 ```
 
+
+- templates 폴더 생성 및 연결
+
+```python
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+```
+
+- TO-DO 리스트 템플릿 작성
+  
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <a href="/add/">Add To-Do</a>
+    <ul>
+        {% for todo in todos %}
+            <li>
+                <form action="/toggle/{{ todo.id }}/" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit">{{ todo.title }}</button>
+                </form>
+                {% if todo.completed %} (Done) {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+```
+
+- TO-DO 추가 템플릿 작성
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add To-Do</title>
+</head>
+<body>
+    <h1>Add To-Do</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="To-Do Title">
+        <button type="submit">Add</button>
+    </form>
+    <a href="/">Back</a>
+</body>
+</html>
+```
+
+
