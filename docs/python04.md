@@ -263,7 +263,7 @@ TEMPLATES = [
 
 
 
-```
+```python
 <!DOCTYPE html>
 <html lang="en">
 <head>
