@@ -10,9 +10,7 @@ The web framework for perfectionists with deadlines = 마감일에 쫓기는 완
 개발 속도가 빠르고, 보안이 훌륭하고, 기능이 많다.
 
 
-### ◆ 장고의 디자인 패턴(MTV)
-
-- MTV(Model Template View)
+### ◆ 장고의 디자인 패턴 : MTV (Model-Template-View)
 
 - Model
 
@@ -21,6 +19,13 @@ The web framework for perfectionists with deadlines = 마감일에 쫓기는 완
 SQL을 사용하지 않고 DB작업을 가능하게 하는 ORM(Object-Relational Mapping)을 제공한다.
 ORM : 입문자에게 더 쉽고 탄탄함
 (models.py)
+```
+- Template
+
+```
+사용자에게 보이는 부분을 관리.
+View로부터 전달받은 데이터 등을 가시화 하여 사용자에게 보여준다.
+(.html)
 ```
 
 - View
@@ -31,13 +36,7 @@ ORM : 입문자에게 더 쉽고 탄탄함
 (veiws.py)
 ```
 
-- Template
 
-```
-사용자에게 보이는 부분을 관리.
-View로부터 전달받은 데이터 등을 가시화 하여 사용자에게 보여준다.
-(.html)
-```
 
 
 ### ◆ 장고 개발 환경 준비(가상 환경)
