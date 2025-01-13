@@ -241,7 +241,6 @@ urlpatterns = [
 ]
 ```
 
-
 - templates 폴더 생성 및 연결
 
 ```python
@@ -261,6 +260,3 @@ TEMPLATES = [
     },
 ]
 ```
-
-
-
