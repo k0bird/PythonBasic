@@ -91,5 +91,28 @@ TIME_ZONE = 'Asia/Seoul'
 
 - MTV(Model Template View)
 
+- Model
 
+```
+데이터베이스(DB)에 저장되는 데이터에 대한 관리, 연결, 실행의 역할
+SQL을 사용하지 않고 DB작업을 가능하게 하는 ORM(Object-Relational Mapping)을 제공한다.
+ORM : 입문자에게 더 쉽고 탄탄함
+(models.py)
+```
+
+- View
+
+```
+컨트롤러의 역할.
+웹 요청을 받으면 로직에 따라 필요한 데이터를 Model을 통해 추출, 가공하여 템플릿으로 보내준다.
+(veiws.py)
+```
+
+- Template
+
+```
+사용자에게 보이는 부분을 관리.
+View로부터 전달받은 데이터 등을 가시화 하여 사용자에게 보여준다.
+(.html)
+```
 
