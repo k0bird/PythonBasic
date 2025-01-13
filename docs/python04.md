@@ -178,3 +178,67 @@ def index(request):
 ```
 
 
+### ◆ 실습 예제 : TO-DO 웹서비스 만들기
+
+- myapp > models.py 에 To-do 모델을 정의
+
+```python
+from django.db import models
+
+class Todo(models.Model):
+    title = models.CharField(max_length=200)
+    completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
+```
+
+- 데이터베이스에 반영(마이그레이션)
+
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+
+- HeidiSQL(db 브라우저) 설치
+
+https://www.heidisql.com/download.php
+
+
+- 뷰 작성
+
+```python
+from django.shortcuts import render, redirect
+from .models import Todo
+
+def todo_list(request):
+    todos = Todo.objects.all()
+    return render(request, 'todo/todo_list.html', {'todos': todos})
+
+def add_todo(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        Todo.objects.create(title=title)
+        return redirect('todo_list')
+    return render(request, 'todo/add_todo.html')
+
+def toggle_todo(request, todo_id):
+    todo = Todo.objects.get(id=todo_id)
+    todo.completed = not todo.completed
+    todo.save()
+    return redirect('todo_list')
+```
+
+- URL 설정
+
+```python
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.todo_list, name='todo_list'),
+    path('add/', views.add_todo, name='add_todo'),
+    path('toggle/<int:todo_id>/', views.toggle_todo, name='toggle_todo'),
+]
+```
+
