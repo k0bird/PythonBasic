@@ -79,9 +79,6 @@ Quit the server with CONTROL-C.
 
 ![image](https://github.com/user-attachments/assets/276dabe0-5428-4c7a-af59-d1e6ed7a4000)
 
-
-### ◆ settings.py 설정하기
-
 - 서버 언어와 시간 설정
 
 ```python
