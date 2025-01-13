@@ -259,31 +259,6 @@ TEMPLATES = [
 ]
 ```
 
-- TO-DO 리스트 템플릿 작성
-
-
-
-```python
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>To-Do List</title>
-</head>
-<body>
-    <h1>To-Do List</h1>
-    <a href="/add/">Add To-Do</a>
-    <ul>
-        {% for todo in todos %}
-            <li>
-                <form action="/toggle/{{ todo.id }}/" method="post" style="display: inline;">
-                    {% csrf_token %}
-                    <button type="submit">{{ todo.title }}</button>
-                </form>
-                {% if todo.completed %} (Done) {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
-```
+- [실습파일1 : TO-DO 리스트 템플릿](/html/todo_list.html)
+- 
+- [실습파일2 : TO-DO 추가 템플릿](/html/add_todo.html)
