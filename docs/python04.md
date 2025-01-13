@@ -10,35 +10,6 @@ The web framework for perfectionists with deadlines = 마감일에 쫓기는 완
 개발 속도가 빠르고, 보안이 훌륭하고, 기능이 많다.
 
 
-### ◆ 장고의 디자인 패턴 : MTV (Model-Template-View)
-
-- Model
-
-```
-데이터베이스(DB)에 저장되는 데이터에 대한 관리, 연결, 실행의 역할
-SQL을 사용하지 않고 DB작업을 가능하게 하는 ORM(Object-Relational Mapping)을 제공한다.
-ORM : 입문자에게 더 쉽고 탄탄함
-(models.py)
-```
-- Template
-
-```
-사용자에게 보이는 부분을 관리.
-View로부터 전달받은 데이터 등을 가시화 하여 사용자에게 보여준다.
-(.html)
-```
-
-- View
-
-```
-컨트롤러의 역할.
-웹 요청을 받으면 로직에 따라 필요한 데이터를 Model을 통해 추출, 가공하여 템플릿으로 보내준다.
-(veiws.py)
-```
-
-
-
-
 ### ◆ 장고 개발 환경 준비(가상 환경)
 
 1. 새로운 프로젝트 생성
@@ -174,6 +145,33 @@ from django.http import HttpResponse
 
 def index(request):
     return HttpResponse("안녕하세요 myapp에 오신것을 환영합니다.")
+```
+
+
+### ◆ 장고의 디자인 패턴 : MTV (Model-Template-View)
+
+- Model
+
+```
+데이터베이스(DB)에 저장되는 데이터에 대한 관리, 연결, 실행의 역할
+SQL을 사용하지 않고 DB작업을 가능하게 하는 ORM(Object-Relational Mapping)을 제공한다.
+ORM : 입문자에게 더 쉽고 탄탄함
+(models.py)
+```
+- Template
+
+```
+사용자에게 보이는 부분을 관리.
+View로부터 전달받은 데이터 등을 가시화 하여 사용자에게 보여준다.
+(.html)
+```
+
+- View
+
+```
+컨트롤러의 역할.
+웹 요청을 받으면 로직에 따라 필요한 데이터를 Model을 통해 추출, 가공하여 템플릿으로 보내준다.
+(veiws.py)
 ```
 
 
