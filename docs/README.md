@@ -8,4 +8,4 @@ Building a Simple Web Service with Python, Django, and Web Scraping
   
 - [3주차_클래스 구조 익히기](python03.md/)
 
-- [4주차_장고(Django)프레임워크를 이용한 웹개발
+- [4주차_장고(Django)프레임워크를 이용한 웹개발]
