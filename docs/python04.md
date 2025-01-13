@@ -150,3 +150,31 @@ urlpatterns = [
     path('', include('myapp.urls')),
 ]
 ```
+
+
+- myapp > urls.py (생성)
+
+```python
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path('', views.index),
+]
+```
+
+
+### ◆ 간단한 뷰(views) 출력 사용해보기
+
+- myapp > views.py
+
+```python
+from django.http import HttpResponse
+
+
+def index(request):
+    return HttpResponse("안녕하세요 myapp에 오신것을 환영합니다.")
+```
+
+
