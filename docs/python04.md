@@ -90,10 +90,9 @@ LANGUAGE_CODE = 'ko-kr'
 TIME_ZONE = 'Asia/Seoul'
 ```
 
-
 ### ◆ 장고의 디자인 패턴(MTV)
 
-- MTV(Model - Template - View)
+- MTV(Model Template View)
 
 - Model
 
