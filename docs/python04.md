@@ -202,8 +202,7 @@ python manage.py migrate
 
 - HeidiSQL(db 브라우저) 설치
 
-https://www.heidisql.com/download.php
-
+[https://www.heidisql.com/download.php]
 
 - 뷰 작성
 
