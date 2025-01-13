@@ -116,3 +116,36 @@ View로부터 전달받은 데이터 등을 가시화 하여 사용자에게 보
 (.html)
 ```
 
+### ◆ 어플리케이션(App) 만들기
+
+```
+djnago-admin startapp myapp
+```
+
+- 새로 생성한 앱 추가
+
+```python
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'myapp',  # 새로 생성한 앱 추가
+]
+```
+
+### ◆ URL 연결
+
+- config > urls.py
+  
+```python
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('myapp.urls')),
+]
+```
